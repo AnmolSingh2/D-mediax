@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact – D-MediaX</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Minimal Contact Page -->
+  <section class="contact-section">
+    <h2>Let's Scale Your Business</h2>
+    <p>We typically respond within 24 hours.</p>
+
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var formData = {
+    name: document.querySelector("input[name='name']").value,
+    email: document.querySelector("input[name='email']").value,
+    message: document.querySelector("textarea[name='message']").value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbzbgf2-JZ8CjEzVgnEzr0n7cXL0YIjeJKgn2IxHzxN-YRTZ4-3cpioolZzqTvOz9-M/exec", { // Replace with your web app URL
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(response => response.text())
+  .then(data => alert("Form submitted successfully!"))
+  .catch(error => console.error("Error:", error));
+});
+</script>
+
+    <div class="contact-info">
+      <p><strong>Email:</strong> dhaliwalmediax@gmail.com</p>
+      <p><strong>Phone:</strong> +91 9463430364</p>
+    </div>
+  </section>
+
+</body>
+</html>
