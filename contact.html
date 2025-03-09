@@ -22,12 +22,12 @@
     <h2>Let's Scale Your Business</h2>
     <p>We typically respond within 24 hours.</p>
 
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+    <form id="contactForm" class="contact-form">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
 <script>
 document.getElementById("contactForm").addEventListener("submit", function(event) {
   event.preventDefault();
@@ -38,16 +38,23 @@ document.getElementById("contactForm").addEventListener("submit", function(event
     message: document.querySelector("textarea[name='message']").value
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbzbgf2-JZ8CjEzVgnEzr0n7cXL0YIjeJKgn2IxHzxN-YRTZ4-3cpioolZzqTvOz9-M/exec", { // Replace with your web app URL
+  fetch("https://formspree.io/f/mzzepnpg", {  // Your Formspree endpoint
     method: "POST",
-    body: JSON.stringify(formData),
-    headers: { "Content-Type": "application/json" }
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData)
   })
-  .then(response => response.text())
-  .then(data => alert("Form submitted successfully!"))
+  .then(response => {
+    if (response.ok) {
+      alert("Form submitted successfully!");
+      document.getElementById("contactForm").reset();
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  })
   .catch(error => console.error("Error:", error));
 });
 </script>
+
 
     <div class="contact-info">
       <p><strong>Email:</strong> dhaliwalmediax@gmail.com</p>
